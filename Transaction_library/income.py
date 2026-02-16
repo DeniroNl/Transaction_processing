@@ -4,10 +4,18 @@ from datetime import datetime
 
 
 class Income(Transaction):
-    """Сумма всегда положительная. """
+    """
+    Класс доходов содержащий сумму, дату, описание доходов
+     и дополнительные методы для расчёта баланса и фильтра по дате
+    """
 
     def __init__(self, date_str: str, amount: float, description: str):
-        """Инициализация дохода"""
+        """
+        Базовый конструктор класса
+        :param date_str: Дата в формате ГГГГ-ММ-ДД
+        :param amount: Сумма операции
+        :param description: Описание операции
+        """
         if amount <= 0:
             raise ValueError("Ошибка: Сумма дохода должна быть положительной.")
         super().__init__(date_str, abs(amount), description)
@@ -15,7 +23,10 @@ class Income(Transaction):
 
 
 def add_income(transactions_list):
-    """Добавление дохода."""
+    """
+     Метод для добавления расходов (заполняет param)
+    :param transactions_list: Список всех транзакций
+    """
     print("\n--- Добавление дохода ---")
 
     while True:
@@ -49,6 +60,11 @@ def add_income(transactions_list):
 
 
 def calculate_balance(transactions_list):
+    """
+    Метод для расчёта баланса
+    :param transactions_list: Список всех транзакций
+    :return: Пустую строку
+    """
 
     if not transactions_list:
         print("Нет операций для расчета баланса.")
@@ -62,10 +78,15 @@ def calculate_balance(transactions_list):
     print(f"Общий доход: {total_income} руб")
     print(f"Общий расход: {total_expense} руб")
     print(f"Итоговый баланс: {total_balance:} руб")
-    return None
+    return ""
 
 
 def filter_by_date(transactions_list):
+    """
+    Метод длч отбора транзакций за определенный период времени и вывода их на экран.
+    :param transactions_list: Список всех транзакций
+    :return: Пустую строку
+    """
 
     if not transactions_list:
         print("Нет операций для отображения.")
@@ -97,6 +118,6 @@ def filter_by_date(transactions_list):
         print(f"\nОперации с {start_date} по {end_date}:")
         for t in filtered:
             print(t.get_info())
-    return None
+    return ""
 
 

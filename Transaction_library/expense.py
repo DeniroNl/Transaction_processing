@@ -4,12 +4,15 @@ from datetime import datetime
 
 class Expense(Transaction):
     """
-    Класс расходов. Сумма всегда отрицательная.
+    Класс расходов содержащий сумму, дату, описание расходов
     """
 
     def __init__(self, date_str: str, amount: float, description: str):
         """
-        Инициализация расхода.
+        Базовый конструктор класса
+        :param date_str: Дата в формате ГГГГ-ММ-ДД
+        :param amount: Сумма операции
+        :param description: Описание операции
         """
         if amount <= 0:
             raise ValueError("Ошибка: Сумма расхода должна быть положительной.")
@@ -17,7 +20,10 @@ class Expense(Transaction):
 
 
 def add_expense(transactions_list):
-    """Добавление расхода."""
+    """
+    Метод для добавления расходов (заполняет param)
+    :param transactions_list: Список всех транзакций
+    """
     print("\n--- Добавление расхода ---")
 
     while True:
@@ -48,3 +54,5 @@ def add_expense(transactions_list):
         print("Расход успешно добавлен!")
     except ValueError as e:
         print(f"Ошибка: {e}")
+
+        
